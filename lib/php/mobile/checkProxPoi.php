@@ -39,7 +39,8 @@
                 		status_id_status, 
                 		subcategory_id_subcategory, 
                 		6371 * 2 * asin(sqrt(power(sin((".$centerlat." - abs(y(geom_poi))) * pi() / 180 / 2), 2) + cos(".$centerlat." * pi() / 180) * cos(abs(y(geom_poi)) * pi() / 180) * power(sin((".$centerlng." - x(geom_poi)) * pi() / 180 / 2), 2) )) AS distance, 
-                		priorite_id_priorite 
+                		priorite_id_priorite,
+                        reponse_collectivite_poi
                 	FROM poi
                 	INNER JOIN subcategory ON subcategory.id_subcategory = poi.subcategory_id_subcategory
                 	INNER JOIN commune ON commune.id_commune = poi.commune_id_commune
@@ -75,7 +76,7 @@
                             print '<ville><![CDATA['.stripslashes($row['lib_commune']).']]></ville>';
 			    			print '<prop><![CDATA['.stripslashes($row['prop_poi']).']]></prop>';
 			    			print '<dateCreation><![CDATA['.stripslashes($row['datecreation_poi']).']]></dateCreation>';
-								
+			    			print '<reponseCollectivite><![CDATA['.stripslashes($row['reponse_collectivite_poi']).']]></reponseCollectivite>';
                             print '<listcomment>';
 														
 							$sql4 = "SELECT * FROM commentaires WHERE poi_id_poi = ".$row['id_poi']." AND display_commentaires = 'Modéré accepté'";
